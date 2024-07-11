@@ -5,9 +5,11 @@ body {
             padding: 20px;
             color: #333;
         }
+
         h1, h3 {
             color: #4CAF50;
         }
+
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -16,11 +18,13 @@ body {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
+
         .button-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .copy-btn {
             display: inline-block;
             padding: 10px 20px;
@@ -30,53 +34,46 @@ body {
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            position: relative;
             transition: background-color 0.3s;
         }
+
         .copy-btn.main {
             background-color: #007BFF;
         }
+
         .copy-btn.backup {
             background-color: #FF5722;
         }
+
         .copy-btn.copied {
             background-color: #FFC107;
         }
+
         .instructions {
             margin: 20px 0;
         }
+
         .instructions p {
             margin: 10px 0;
         }
+
         a {
             color: #007BFF;
             text-decoration: none;
             transition: color 0.3s;
         }
+
         a:hover {
             color: #0056b3;
         }
+
         img {
             max-width: 100%;
             border-radius: 5px;
         }
+
         hr {
             border: none;
             border-top: 1px solid #ddd;
             margin: 20px 0;
-        }
-        .copy-tooltip {
-            display: none;
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 5px 10px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 5px;
-            font-size: 12px;
-        }
-        .copy-btn.copied .copy-tooltip {
-            display: block;
         }

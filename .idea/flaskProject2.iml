@@ -10,6 +10,7 @@
     <orderEntry type="jdk" jdkName="Flask_PW" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="normalize" level="application" />
+    <orderEntry type="library" name="clipboard.js" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Jinja2" />
