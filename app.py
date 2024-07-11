@@ -4,6 +4,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request, render_template, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 import pickle
+import pytz
 
 app = Flask(__name__)
 
@@ -30,7 +31,7 @@ def load_data():
 
 
 # 创建一个管理员账号
-hashed_password = generate_password_hash("aiyuechuang")
+hashed_password = generate_password_hash("aiyuechuang", method='pbkdf2:sha256')
 admin = Admin("aiyuechuang", hashed_password)
 admins, passwords = load_data()
 admins.append(admin)
@@ -100,7 +101,8 @@ def delete_expired_passwords():
         pickle.dump(passwords, f)
 
 
-scheduler = BackgroundScheduler()
+# scheduler = BackgroundScheduler(timezone=pytz.timezone('Asia/Tokyo'))
+scheduler = BackgroundScheduler(timezone=pytz.utc)
 scheduler.add_job(func=delete_expired_passwords, trigger="interval", seconds=3600)
 scheduler.start()
 
