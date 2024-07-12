@@ -1,0 +1,48 @@
+.copy-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: relative; /* Added */
+}
+
+/* Added */
+.copy-btn:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-top: 10px solid green;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+/* Added */
+.copy-btn.copied:after {
+    content: "Copied!";
+    top: 0;
+    transform: translateX(-50%) translateY(-290%);
+    opacity: 1;
+    color: blue;
+}
+
+.main {
+    background-color: #4CAF50;
+    /* 这里添加更多样式 */
+}
+
+.backup {
+    background-color: #f44336;
+    /* 这里添加更多样式 */
+}
