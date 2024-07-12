@@ -31,8 +31,8 @@ def load_data():
 
 
 # 创建一个管理员账号
-hashed_password = generate_password_hash("aiyuechuang", method='pbkdf2:sha256')
-admin = Admin("aiyuechuang", hashed_password)
+hashed_password = generate_password_hash("admin", method='pbkdf2:sha256')
+admin = Admin("admin", hashed_password)
 admins, passwords = load_data()
 admins.append(admin)
 save_data(admins, passwords)
