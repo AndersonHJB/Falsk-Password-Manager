@@ -5,4 +5,4 @@ with open('data/admins.pickle', 'rb') as file:
 
 print(loaded_admins)
 for item in loaded_admins:
-    print(item.name)
+    print(item)
