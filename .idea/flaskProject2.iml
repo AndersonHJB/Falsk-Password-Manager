@@ -7,7 +7,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Flask_PW" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (Falsk-Password-Manager)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="normalize" level="application" />
     <orderEntry type="library" name="clipboard.js" level="application" />
