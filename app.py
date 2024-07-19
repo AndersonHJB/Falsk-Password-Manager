@@ -1,12 +1,13 @@
 from models import Admin, Password
 from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
-from flask import Flask, request, render_template, redirect, url_for, flash
+from flask import Flask, request, render_template, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import pickle
 import pytz
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # 你可以生成一个更安全的密钥
 
 
 def save_data(admins, passwords):
@@ -45,12 +46,14 @@ def index():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_page():
-    admins, passwords = load_data()
+    # admins, passwords = load_data()
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        admins, passwords = load_data()
         for admin in admins:
             if admin.username == username and check_password_hash(admin.password, password):
+                session['logged_in'] = True  # 设置会话标志为已登录
                 return redirect(url_for('manage_passwords'))
         return 'Invalid credentials'
     else:
@@ -59,6 +62,8 @@ def admin_page():
 
 @app.route('/manage-passwords', methods=['GET', 'POST'])
 def manage_passwords():
+    if not session.get('logged_in'):  # 检查是否已经登录
+        return redirect(url_for('admin_page'))  # 未登录则重定向到登录页面
     admins, passwords = load_data()
     if request.method == 'POST':
         password = request.form['password']
@@ -87,6 +92,12 @@ def content():
         return 'Invalid password'
     else:
         return render_template('content.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)  # 登出时清除会话
+    return redirect(url_for('index'))
 
 
 def delete_expired_passwords():
