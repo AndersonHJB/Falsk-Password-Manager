@@ -112,6 +112,21 @@ def delete_expired_passwords():
         pickle.dump(passwords, f)
 
 
+@app.route('/delete-password', methods=['GET', 'POST'])
+def delete_password():
+    if not session.get('logged_in'):  # 检查是否已经登录
+        return redirect(url_for('admin_page'))  # 未登录则重定向到登录页面
+    admins, passwords = load_data()
+    if request.method == 'POST':
+        password_to_delete = request.form['password_to_delete']
+        passwords = [password for password in passwords if password.password != password_to_delete]
+        save_data(admins, passwords)
+        flash('Password deleted successfully.')
+        return redirect(url_for('delete_password'))
+    else:
+        return render_template('delete_password.html', passwords=passwords)
+
+
 # scheduler = BackgroundScheduler(timezone=pytz.timezone('Asia/Tokyo'))
 scheduler = BackgroundScheduler(timezone=pytz.utc)
 scheduler.add_job(func=delete_expired_passwords, trigger="interval", seconds=3600)
